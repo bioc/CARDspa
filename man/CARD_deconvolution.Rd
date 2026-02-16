@@ -65,7 +65,6 @@ Spatially Informed Cell Type Deconvolution for Spatial Transcriptomics
 by CARD
 }
 \examples{
-library(RcppML)
 library(NMF)
 library(RcppArmadillo)
 data(spatial_count)

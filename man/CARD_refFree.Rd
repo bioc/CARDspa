@@ -43,7 +43,6 @@ Extension of CARD into a reference-free version of
 deconvolution: CARDfree.
 }
 \examples{
-library(RcppML)
 library(NMF)
 library(RcppArmadillo)
 data(markerList)
