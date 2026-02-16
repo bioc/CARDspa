@@ -23,7 +23,6 @@
 #'
 #' @export
 #' @examples
-#' library(RcppML)
 #' library(NMF)
 #' library(RcppArmadillo)
 #' data(markerList)
@@ -123,12 +122,21 @@ CARD_refFree <- function(
         } else {
             sink("/dev/null")
         }
-        nmfout <- invisible(RcppML::nmf(as.matrix(xinput_norm), numK))
-        sink()
-        B <- nmfout$w
-        rownames(B) <- rownames(xinput_norm)
-        vint1 <- as.matrix(t(nmfout$h))
-        rownames(vint1) <- colnames(xinput_norm)
+        if (requireNamespace("RcppML", quietly = TRUE)) {
+            nmfout <- invisible(RcppML::nmf(as.matrix(xinput_norm), numK))
+            sink()
+            B <- nmfout$w
+            rownames(B) <- rownames(xinput_norm)
+            vint1 <- as.matrix(t(nmfout$h))
+            rownames(vint1) <- colnames(xinput_norm)
+        } else {
+            # fallback if RcppML not available
+            nmfout <- invisible(NMF::nmf(as.matrix(xinput_norm), rank = numK))
+            sink()
+            B <- nmfout@fit@W
+            vint1 <- as.matrix(t(nmfout@fit@H))
+            rownames(vint1) <- colnames(xinput_norm)
+        }
     }
     spatial_location <- spatial_location[rownames(spatial_location) %in%
                                         colnames(xinput_norm), ]

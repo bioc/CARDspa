@@ -201,7 +201,6 @@ select_info <- function(basis, sc_eset, commongene, ct_select, ct_varname) {
 #'
 #' @export
 #' @examples
-#' library(RcppML)
 #' library(NMF)
 #' library(RcppArmadillo)
 #' data(spatial_count)
