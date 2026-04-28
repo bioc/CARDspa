@@ -1,6 +1,6 @@
 Package: CARDspa
 Title: Spatially Informed Cell Type Deconvolution for Spatial Transcriptomics
-Version: 1.3.1
+Version: 1.4.0
 Date: 2025-2-6
 Authors@R: 
     c(person(given = "Ying", 
